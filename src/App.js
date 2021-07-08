@@ -1,25 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.scss";
+import Table from "./components/Table";
+import data from "./fackData.json";
 
 function App() {
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: "מספר תז",
+        accessor: "tz",
+      },
+      {
+        Header: "שם העובד",
+        accessor: "name",
+      },
+      {
+        Header: "שעות חריגות",
+        accessor: "extraordinary",
+      },
+      {
+        Header: "שעות ידניות",
+        accessor: "manual",
+      },
+      {
+        Header: "שעות",
+        accessor: "hours",
+      },
+      {
+        Header: "סך הכל שעות",
+        accessor: "total",
+      },
+      {
+        Header: "אפשרויות",
+        accessor: "setting",
+      },
+    ],
+    []
+  );
+
+  const thedata = React.useMemo(() => data, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   
+      <div className="App">
+        <header className="App-header"></header>
+        <Table columns={columns} data={thedata}></Table>
+      </div>
+   
   );
 }
 
 export default App;
+
